@@ -1,12 +1,12 @@
-﻿/* Valid Auto Policy */
+﻿/* Valid Car Policy */
 {
-  "type": "Auto",
+  "type": "Car",
   "make": "BMW"
 }
 
 /* No Make */
 {
-  "type": "Auto"
+  "type": "Car"
 }
 
 /*
