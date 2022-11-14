@@ -2,7 +2,6 @@
 using ArdalisRating.Persistence;
 using ArdalisRating.Policies;
 using ArdalisRating.Serializers;
-using System;
 
 namespace ArdalisRating
 {
@@ -23,30 +22,15 @@ namespace ArdalisRating
             Logger.Log("Loading policy.");
 
             // load policy - open file policy.json
-            string policyJson = PolicySource.GetPolicyFromSource();
+            var policyJson = PolicySource.GetPolicyFromSource();
             var policy = PolicySerializer.GetPolicyFromJsonString(policyJson);
 
-            switch (policy.Type)
-            {
-                case PolicyType.Car:
-                    var carRater = new CarPolicyRater(this, Logger);
-                    carRater.Rate(policy);
-                    break;
+            var factory = new RaterFactory();
 
-                case PolicyType.Land:
-                    var landRater = new LandPolicyRater(this, Logger);
-                    landRater.Rate(policy);
-                    break;
-
-                case PolicyType.Life:
-                    var lifeRater = new LifePolicyRater(this, Logger);
-                    lifeRater.Rate(policy);
-                    break;
-
-                default:
-                    Logger.Log("Unknown policy type");
-                    break;
-            }
+            // The rate method is now open to extension for different types of policies,
+            // But closed against modifications. We do not need to change the rate method itself
+            var rater = factory.Create(policy, this);
+            rater.Rate(policy); 
 
             Logger.Log("Rating completed.");
         }

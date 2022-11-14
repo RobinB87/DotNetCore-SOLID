@@ -1,19 +1,13 @@
 ﻿using ArdalisRating.Logger;
+using ArdalisRating.Models;
 
 namespace ArdalisRating.Policies
 {
-    public class CarPolicyRater
+    public class CarPolicyRater : Rater
     {
-        private readonly RatingEngine _engine;
-        private ConsoleLogger _logger;
+        public CarPolicyRater(RatingEngine engine, ConsoleLogger logger) : base(engine, logger) { }
 
-        public CarPolicyRater(RatingEngine engine, ConsoleLogger logger)
-        {
-            _engine = engine;
-            _logger = logger;
-        }
-
-        public void Rate(Policy policy)
+        public override void Rate(Policy policy)
         {
             _logger.Log("Rating CAR policy...");
             _logger.Log("Validating policy.");
