@@ -1,10 +1,7 @@
 ﻿using ArdalisRating.Logger;
 using ArdalisRating.Persistence;
 using ArdalisRating.Serializers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
-using System.IO;
 
 namespace ArdalisRating
 {
@@ -16,7 +13,7 @@ namespace ArdalisRating
     {
         public ConsoleLogger Logger { get; set; } = new ConsoleLogger();
         public FilePolicySource PolicySource { get; set; } = new FilePolicySource();
-        public PolicySerializer PolicySerializer { get; set; } = new PolicySerializer();
+        public JsonPolicySerializer PolicySerializer { get; set; } = new JsonPolicySerializer();
         public decimal Rating { get; set; }
         public void Rate()
         {
