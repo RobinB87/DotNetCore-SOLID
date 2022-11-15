@@ -30,7 +30,10 @@ namespace ArdalisRating
             // The rate method is now open to extension for different types of policies,
             // But closed against modifications. We do not need to change the rate method itself
             var rater = factory.Create(policy, this);
-            rater?.Rate(policy); 
+            if (rater == null)
+                Logger.Log("Unknown policy type");
+            else
+                rater.Rate(policy); 
 
             Logger.Log("Rating completed.");
         }
