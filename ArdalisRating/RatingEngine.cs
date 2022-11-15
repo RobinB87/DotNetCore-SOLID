@@ -18,10 +18,8 @@ namespace ArdalisRating
         public void Rate()
         {
             Logger.Log("Starting rate.");
-
             Logger.Log("Loading policy.");
 
-            // load policy - open file policy.json
             var policyJson = PolicySource.GetPolicyFromSource();
             var policy = PolicySerializer.GetPolicyFromJsonString(policyJson);
 
@@ -30,10 +28,12 @@ namespace ArdalisRating
             // The rate method is now open to extension for different types of policies,
             // But closed against modifications. We do not need to change the rate method itself
             var rater = factory.Create(policy, this);
-            if (rater == null)
-                Logger.Log("Unknown policy type");
-            else
-                rater.Rate(policy); 
+
+            // Fix LSP violation of null checks using the "null rater type".
+            // The rater factory does not return null anymore under any conditions
+            // Now it is handled the same way as the other raters,
+            // as a subtype of the Rater class
+            rater.Rate(policy); 
 
             Logger.Log("Rating completed.");
         }

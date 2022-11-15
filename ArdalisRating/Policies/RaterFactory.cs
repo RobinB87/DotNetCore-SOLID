@@ -15,9 +15,14 @@ namespace ArdalisRating.Policies
             }
             catch
             {
-                return null;
+                // We do not return null anymore, so we do not need null checks
+                // The rater encapsulates the behavior of what to do when null
+                // This reduces the complexity of the rate method, as it now 
+                // only deals with raters
+                return new UnknownPolicyRater(engine, engine.Logger);
             }
 
+            // old switch code:
             //switch (policy.Type)
             //{
             //    case PolicyType.Car:
