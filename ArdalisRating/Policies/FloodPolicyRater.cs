@@ -5,7 +5,8 @@ namespace ArdalisRating.Policies
 {
     public class FloodPolicyRater : Rater
     {
-        public FloodPolicyRater(RatingEngine engine, ConsoleLogger logger) : base(engine, logger) { }
+        public FloodPolicyRater(RatingEngine engine, ConsoleLogger logger) 
+            : base(engine, logger) { }
 
         public override void Rate(Policy policy)
         {

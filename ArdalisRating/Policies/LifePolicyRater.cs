@@ -6,7 +6,8 @@ namespace ArdalisRating.Policies
 {
     public class LifePolicyRater : Rater
     {
-        public LifePolicyRater(RatingEngine engine, ConsoleLogger logger) : base(engine, logger) { }
+        public LifePolicyRater(RatingEngine engine, ConsoleLogger logger) 
+            : base(engine, logger) { }
 
         public override void Rate(Policy policy)
         {
