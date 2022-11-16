@@ -39,6 +39,8 @@ namespace ArdalisRating
             {
                 return baseRate * 2;
             }
+
+            return 0m;
         }
     }
 }
