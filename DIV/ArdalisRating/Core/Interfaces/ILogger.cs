@@ -1,4 +1,4 @@
-﻿namespace ArdalisRating.Interfaces
+﻿namespace ArdalisRating.Core.Interfaces
 {
     public interface ILogger
     {
