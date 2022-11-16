@@ -1,17 +1,8 @@
-﻿using ArdalisRating.Interfaces;
-using System;
+﻿using ArdalisRating.Core.Interfaces;
 using System.IO;
 
-namespace ArdalisRating
+namespace ArdalisRating.Infrastructure.Loggers
 {
-    public class ConsoleLogger : ILogger
-    {
-        public void Log(string message)
-        {
-            Console.WriteLine(message);
-        }
-    }
-
     public class FileLogger : ILogger
     {
         public void Log(string message)
