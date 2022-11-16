@@ -10,28 +10,31 @@ namespace ArdalisRating
     {
         private readonly ILogger _logger;
         private readonly IPolicySource _policySource;
+        private readonly IPolicySerializer _policySerializer;
 
         public IRatingContext Context;
         public decimal Rating { get; set; }
 
-        public RatingEngine(ILogger logger, IPolicySource policySource)
+        public RatingEngine(
+            ILogger logger,
+            IPolicySource policySource,
+            IPolicySerializer policySerializer)
         {
             _logger = logger;
             _policySource = policySource;
-            Context = new DefaultRatingContext(_policySource);
+            _policySerializer = policySerializer;
+
+            Context = new DefaultRatingContext(_policySource, _policySerializer);
             Context.Engine = this;
         }
 
         public void Rate()
         {
             _logger.Log("Starting rate.");
-
             _logger.Log("Loading policy.");
 
-            string policyJson = Context.LoadPolicyFromFile();
-
-            var policy = Context.GetPolicyFromJsonString(policyJson);
-
+            var policySerialized = _policySource.GetPolicyFromSource();
+            var policy = _policySerializer.GetPolicyFromString(policySerialized);
             var rater = Context.CreateRaterForPolicy(policy, Context);
 
             rater.Rate(policy);

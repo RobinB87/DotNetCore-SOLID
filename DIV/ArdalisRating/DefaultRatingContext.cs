@@ -7,10 +7,14 @@ namespace ArdalisRating
     {
         public RatingEngine Engine { get; set; }
         private readonly IPolicySource _policySource;
+        private readonly IPolicySerializer _policySerializer;
 
-        public DefaultRatingContext(IPolicySource policySource)
+        public DefaultRatingContext(
+            IPolicySource policySource, 
+            IPolicySerializer policySerializer)
         {
             _policySource = policySource;
+            _policySerializer = policySerializer;
         }
 
         public Rater CreateRaterForPolicy(Policy policy, IRatingContext context)
@@ -20,7 +24,7 @@ namespace ArdalisRating
 
         public Policy GetPolicyFromJsonString(string policyJson)
         {
-            return new JsonPolicySerializer().GetPolicyFromJsonString(policyJson);
+            return _policySerializer.GetPolicyFromJsonString(policyJson);
         }
 
         public Policy GetPolicyFromXmlString(string policyXml)
@@ -41,11 +45,6 @@ namespace ArdalisRating
         public void Log(string message)
         {
             new ConsoleLogger().Log(message);
-        }
-
-        public void UpdateRating(decimal rating)
-        {
-            Engine.Rating = rating;
         }
     }
 }
