@@ -1,9 +1,9 @@
-﻿using ArdalisRating.Core.Models;
-using ArdalisRating.Interfaces;
+﻿using ArdalisRating.Core.Interfaces;
+using ArdalisRating.Core.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace ArdalisRating
+namespace ArdalisRating.Infrastructure.Serializers
 {
     public class JsonPolicySerializer : IPolicySerializer
     {

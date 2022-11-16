@@ -1,6 +1,9 @@
-﻿using System;
+﻿using ArdalisRating.Infrastructure.Loggers;
+using ArdalisRating.Infrastructure.PolicySources;
+using ArdalisRating.Infrastructure.Serializers;
+using System;
 
-namespace ArdalisRating
+namespace ArdalisRating.UI
 {
     class Program
     {

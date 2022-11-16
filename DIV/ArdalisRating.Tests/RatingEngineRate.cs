@@ -1,4 +1,5 @@
-using ArdalisRating.Interfaces;
+using ArdalisRating.Core.Models;
+using ArdalisRating.Infrastructure.Serializers;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -32,7 +33,7 @@ namespace ArdalisRating.Tests
                 BondAmount = 200000,
                 Valuation = 200000
             };
-            var json = JsonConvert.SerializeObject(policy);
+            string json = JsonConvert.SerializeObject(policy);
             _policySource.PolicyString = json;
 
             _engine.Rate();
