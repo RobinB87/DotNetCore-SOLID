@@ -13,7 +13,6 @@ namespace ArdalisRating
         public IRatingContext Context { get; set; } = new DefaultRatingContext();
         public decimal Rating { get; set; }
         
-        public RatingEngine() : this(new ConsoleLogger()) { }
         public RatingEngine(ILogger logger)
         {
             Context.Engine = this;
