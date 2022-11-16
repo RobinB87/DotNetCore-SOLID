@@ -1,4 +1,5 @@
-﻿using ArdalisRating.Interfaces;
+﻿using ArdalisRating.Core.Models;
+using ArdalisRating.Interfaces;
 
 namespace ArdalisRating
 {

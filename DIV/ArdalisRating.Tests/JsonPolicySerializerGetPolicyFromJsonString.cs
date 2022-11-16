@@ -1,3 +1,4 @@
+using ArdalisRating.Core.Models;
 using Xunit;
 
 namespace ArdalisRating.Tests
