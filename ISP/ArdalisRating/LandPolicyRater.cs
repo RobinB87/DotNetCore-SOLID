@@ -1,11 +1,11 @@
-﻿namespace ArdalisRating
+﻿using ArdalisRating.Interfaces;
+
+namespace ArdalisRating
 {
     public class LandPolicyRater : Rater
     {
-        public LandPolicyRater(IRatingContext context)
-            :base(context)
-        {
-        }
+        public LandPolicyRater(IRatingUpdater ratingUpdater)
+            : base(ratingUpdater) { }
 
         public override void Rate(Policy policy)
         {
@@ -21,7 +21,7 @@
                 Logger.Log("Insufficient bond amount.");
                 return;
             }
-            _context.UpdateRating(policy.BondAmount * 0.05m);
+            _ratingUpdater.UpdateRating(policy.BondAmount * 0.05m);
         }
     }
 }

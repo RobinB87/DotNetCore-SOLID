@@ -1,13 +1,12 @@
-﻿using System;
+﻿using ArdalisRating.Interfaces;
+using System;
 
 namespace ArdalisRating
 {
     public class AutoPolicyRater : Rater
     {
-        public AutoPolicyRater(IRatingContext context)
-            : base(context)
-        {
-        }
+        public AutoPolicyRater(IRatingUpdater ratingUpdater)
+            : base(ratingUpdater) { }
 
         public override void Rate(Policy policy)
         {
@@ -22,9 +21,9 @@ namespace ArdalisRating
             {
                 if (policy.Deductible < 500)
                 {
-                    _context.UpdateRating(1000m);
+                    _ratingUpdater.UpdateRating(1000m);
                 }
-                _context.UpdateRating(900m);
+                _ratingUpdater.UpdateRating(900m);
             }
         }
     }

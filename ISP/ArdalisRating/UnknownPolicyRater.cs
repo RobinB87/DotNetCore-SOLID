@@ -1,11 +1,11 @@
-﻿namespace ArdalisRating
+﻿using ArdalisRating.Interfaces;
+
+namespace ArdalisRating
 {
     public class UnknownPolicyRater : Rater
     {
-        public UnknownPolicyRater(IRatingContext context)
-            : base(context)
-        {
-        }
+        public UnknownPolicyRater(IRatingUpdater ratingUpdater)
+            : base(ratingUpdater) { }
 
         public override void Rate(Policy policy)
         {
