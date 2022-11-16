@@ -1,4 +1,4 @@
-﻿using ArdalisRating.Interfaces;
+﻿using ArdalisRating.Core.Interfaces;
 
 namespace ArdalisRating.Tests
 {
