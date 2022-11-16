@@ -7,14 +7,20 @@ namespace ArdalisRating.Tests
     public class RatingEngineRate
     {
         private RatingEngine _engine;
-        private ILogger _logger;
-        private IPolicySource _policySource;
+        private FakeLogger _logger;
+        private FakePolicySource _policySource;
+        private JsonPolicySerializer _policySerializer;
 
         public RatingEngineRate()
         {
             _logger = new FakeLogger();
             _policySource = new FakePolicySource();
-            _engine = new RatingEngine(_logger, _policySource);
+            _policySerializer = new JsonPolicySerializer();
+
+            _engine = new RatingEngine(_logger,
+                _policySource,
+                _policySerializer,
+                new RaterFactory(_logger));
         }
 
         [Fact]
@@ -64,7 +70,7 @@ namespace ArdalisRating.Tests
             };
 
             var json = JsonConvert.SerializeObject(policy);
-            File.WriteAllText("policy.json", json);
+            _policySource.PolicyString = json;
             _engine.Rate();
             var result = _engine.Rating;
 

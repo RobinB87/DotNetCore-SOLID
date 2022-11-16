@@ -10,7 +10,7 @@ namespace ArdalisRating.Tests
             var inputJson = "{}";
             var serializer = new JsonPolicySerializer();
 
-            var result = serializer.GetPolicyFromJsonString(inputJson);
+            var result = serializer.GetPolicyFromString(inputJson);
 
             var policy = new Policy();
             AssertPoliciesEqual(result, policy);
@@ -26,11 +26,13 @@ namespace ArdalisRating.Tests
 ";
             var serializer = new JsonPolicySerializer();
 
-            var result = serializer.GetPolicyFromJsonString(inputJson);
+            var result = serializer.GetPolicyFromString(inputJson);
 
-            var policy = new Policy {
+            var policy = new Policy
+            {
                 Type = "Auto",
-                Make = "BMW" };
+                Make = "BMW"
+            };
             AssertPoliciesEqual(result, policy);
         }
 
