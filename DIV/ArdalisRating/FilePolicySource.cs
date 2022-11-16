@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using ArdalisRating.Interfaces;
+using System.IO;
 
 namespace ArdalisRating
 {
-    public class FilePolicySource
+    public class FilePolicySource : IPolicySource
     {
         public string GetPolicyFromSource()
         {

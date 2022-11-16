@@ -9,16 +9,19 @@ namespace ArdalisRating
     public class RatingEngine
     {
         private readonly ILogger _logger;
+        private readonly IPolicySource _policySource;
 
-        public IRatingContext Context { get; set; } = new DefaultRatingContext();
+        public IRatingContext Context;
         public decimal Rating { get; set; }
-        
-        public RatingEngine(ILogger logger)
+
+        public RatingEngine(ILogger logger, IPolicySource policySource)
         {
-            Context.Engine = this;
             _logger = logger;
+            _policySource = policySource;
+            Context = new DefaultRatingContext(_policySource);
+            Context.Engine = this;
         }
-        
+
         public void Rate()
         {
             _logger.Log("Starting rate.");
