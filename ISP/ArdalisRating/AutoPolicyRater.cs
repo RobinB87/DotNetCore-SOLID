@@ -22,6 +22,7 @@ namespace ArdalisRating
                 if (policy.Deductible < 500)
                 {
                     _ratingUpdater.UpdateRating(1000m);
+                    return;
                 }
                 _ratingUpdater.UpdateRating(900m);
             }
